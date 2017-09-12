@@ -3,10 +3,9 @@ extends ./shared/layout.pug
 block tex_body
     h4 Editing "#{note.title}"
     input#note-id(type="hidden", value=note.id)
+    span#error(style="color: red;")
     div.row
-        div.col-xs-1
-            button.btn.btn-primary#render Render
-        div.col-xs-5
+        div.col-xs-8
             div#editor #{note.body}
-        div.col-xs-6
+        div.col-xs-4
             div#output

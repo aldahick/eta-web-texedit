@@ -6,6 +6,7 @@ declare module "katex-autorender" {
             display: boolean;
         }[];
         ignoredTags?: string[];
+        errorCallback?: (err: katex.ParseError) => void;
     }) => void;
     export = renderMathInElement;
 }

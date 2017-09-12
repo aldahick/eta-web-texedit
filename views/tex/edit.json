@@ -1,4 +1,7 @@
 {
   "css": ["@katex"],
-  "include": ["/tex/shared/global.json"]
+  "include": ["/tex/shared/global.json"],
+  "standaloneJS": [
+    "https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/ace.js"
+  ]
 }

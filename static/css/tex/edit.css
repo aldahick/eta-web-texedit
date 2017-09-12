@@ -2,10 +2,24 @@
     display: inline;
 }
 
+#body-content {
+    overflow: hidden;
+}
+
 #editor {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    height: 600px;
+}
+
+#output {
+    height: 600px;
+    overflow: auto;
+}
+
+#editor, #editor * {
+    font-family: monospace !important;
 }
