@@ -1,0 +1,7 @@
+{
+  "css": [
+    "@source-sans-pro",
+    "@bootstrap-cosmo",
+    "/css/tex/global.css"
+  ]
+}

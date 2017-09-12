@@ -1,0 +1,17 @@
+{
+  "css": {
+    "katex": "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css"
+  },
+  "redirects": {},
+  "dirs": {
+    "controllers": ["controllers"],
+    "models": ["models"],
+    "staticFiles": ["static"],
+    "views": ["views"],
+    "lifecycleHandlers": [],
+    "requestTransformers": [],
+    "subpathHandlers": []
+  },
+  "indexes": [],
+  "name": "hicks-web-texedit"
+}

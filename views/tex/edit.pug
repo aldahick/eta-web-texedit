@@ -1,0 +1,12 @@
+extends ./shared/layout.pug
+
+block tex_body
+    h4 Editing "#{note.title}"
+    input#note-id(type="hidden", value=note.id)
+    div.row
+        div.col-xs-1
+            button.btn.btn-primary#render Render
+        div.col-xs-5
+            textarea.form-control#input(rows="20", cols="50") #{note.body}
+        div.col-xs-6
+            div#output
