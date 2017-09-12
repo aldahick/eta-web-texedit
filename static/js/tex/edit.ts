@@ -16,10 +16,6 @@ function render(): void {
     $.post("/api/tex/updateNote", {
         noteId: $("#note-id").val(),
         body: $("#input").val()
-    }, response => {
-        console.log(response);
-    }).fail(err => {
-        console.log(err);
     });
 }
 
