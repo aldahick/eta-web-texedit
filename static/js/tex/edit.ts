@@ -8,8 +8,9 @@ let errorFadeTimeout: number;
 
 function save(): void {
     render();
-    $.post("/api/tex/updateNote", {
+    $.post("/api/tex/update", {
         noteId: $("#note-id").val(),
+        title: $("#title").val(),
         body: editor.getValue()
     });
 }
@@ -53,4 +54,10 @@ $(document).ready(() => {
         save();
         return false;
     });
+    $("#input").on("keypress", evt => {
+        if (evt.which === JQuery.Key.Enter) {
+            save();
+        }
+    });
+    render();
 });

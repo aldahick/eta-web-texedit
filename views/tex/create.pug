@@ -1,0 +1,14 @@
+extends ./shared/layout.pug
+
+block tex_body
+    h4 Create a new note
+    form.row(action="/api/tex/create", method="POST")
+        div.col-xs-3
+            input.form-control(type="text", name="title", placeholder="Title", required)
+        div.col-xs-2
+            select.form-control(name="type")
+                each name, id in NoteType
+                    if isNaN(name)
+                        option(value=id) #{name}
+        div.col-xs-1
+            button.btn.btn-success Create

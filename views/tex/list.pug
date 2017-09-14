@@ -1,0 +1,20 @@
+extends ./shared/layout.pug
+
+block tex_body
+    h4 List Notes
+    table.table.table-hover.table-striped
+        thead
+            th Title
+            th Date Created
+            th Author
+            th Type
+        tbody
+            each note in notes
+                tr.note-row(data-id=note.id)
+                    td
+                        a(href="/tex/edit?id=" + note.id) #{note.title}
+                    td #{moment(note.created).format("LL")}
+                    td #{note.author.firstName} #{note.author.lastName}
+                    td #{NoteType[note.type]}
+                    td
+                        span.btn-delete.glyphicon.glyphicon-trash

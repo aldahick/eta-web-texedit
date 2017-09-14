@@ -1,7 +1,8 @@
 extends ./shared/layout.pug
 
 block tex_body
-    h4 Editing "#{note.title}"
+    h4(style="display: inline;") Title
+    input#title(type="text", value=note.title)
     input#note-id(type="hidden", value=note.id)
     span#error(style="color: red;")
     div.row

@@ -3,3 +3,5 @@
 export enum TexApiError {
     NoteNameAlreadyExists
 }
+
+export default TexApiError;

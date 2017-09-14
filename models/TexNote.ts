@@ -17,6 +17,16 @@ export default class TexNote {
     @orm.Column({ type: "int", nullable: false })
     public type: TexNoteType;
 
+    @orm.Column({ type: "date", nullable: false, name: "created" })
+    public _created: Date = new Date();
+
+    public get created(): Date {
+        if (typeof(this._created) === "string") {
+            this._created = new Date(this._created);
+        }
+        return this._created;
+    }
+
     @orm.Column({ type: "text", nullable: false })
     public body = "";
 }
