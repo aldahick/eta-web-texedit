@@ -1,14 +1,11 @@
 {
-  "name": "eta-cre-web-shared",
-  "version": "0.0.1",
-  "description": "Logic used by multiple Crossroads products for Eta v2.1+",
-  "homepage": "https://github.com/crossroads-education/eta-web-shared",
-  "repository": "https://github.com/crossroads-education/eta-web-shared.git",
-  "license": "MIT",
-  "contributors": [
-    "Alex Hicks <alex@crossroadseducation.org> (https://alexhicks.net)"
-  ],
+  "name": "eta-hicks-web-texedit",
+  "version": "1.0.0",
+  "description": "A live-preview LaTeX note-taking webapp",
+  "homepage": "https://github.com/aldahick/eta-web-texedit",
+  "repository": "https://github.com/aldahick/eta-web-texedit.git",
+  "author": "Alex Hicks <alex@crossroadseducation.org> (https://alexhicks.net)",
   "engines": {
-    "node": ">=0.6.10.0"
+    "node": ">=0.8.4.0"
   }
 }
