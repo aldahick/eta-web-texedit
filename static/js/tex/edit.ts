@@ -26,8 +26,6 @@ function render(): void {
         }],
         errorCallback: onLatexRenderError
     });
-    // dirty hack to fix integral symbols
-    $(".mop.op-symbol:contains(\u{222B})").filter((i, e) => !$(e).parent().hasClass("mop")).css("margin-right", 0);
 }
 
 function onLatexRenderError(err: katex.ParseError): void {
