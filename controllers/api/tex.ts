@@ -11,7 +11,7 @@ export default class ApiTexController extends GenericTexController {
     public async create({ type, title }: { type: db.TexNoteType, title: string }): Promise<void> {
         let note: db.TexNote = await db.texNote().createQueryBuilder("note")
             .leftJoinAndSelect("note.author", "author")
-            .where(`"author"."id" = :personId`, { personId: this.req.session.userid })
+            .where(`"author"."id" = :userId`, { userId: this.req.session.userid })
                 .andWhere(`"note"."title" = :title`, { title })
             .getOne();
         if (note) {
@@ -19,7 +19,7 @@ export default class ApiTexController extends GenericTexController {
         }
         note = await db.texNote().save(db.texNote().create({
             body: "", title, type,
-            author: db.person().create({ id: this.req.session.userid })
+            author: db.user().create({ id: this.req.session.userid })
         }));
         this.redirect("/tex/edit?id=" + note.id);
     }

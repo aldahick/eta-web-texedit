@@ -43,7 +43,7 @@ export default class TexController extends GenericTexController {
         this.global();
         this.res.view["notes"] = await db.texNote().createQueryBuilder("note")
             .leftJoinAndSelect("note.author", "author")
-            .where(`"author"."id" = :personId`, { personId: this.req.session.userid })
+            .where(`"author"."id" = :userId`, { userId: this.req.session.userid })
             .orderBy(`"note"."created"`, "DESC")
             .addOrderBy(`"note"."title"`, "DESC")
             .getMany();
