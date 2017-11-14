@@ -4,7 +4,8 @@
     "@types/bootstrap": "^3.3.35",
     "@types/es6-shim": "^0.31.34",
     "@types/jquery": "^3.2.11",
-    "@types/katex": "^0.5.0"
+    "@types/katex": "^0.5.0",
+    "@types/marked": "^0.3.0"
   },
   "dependencies": {}
 }

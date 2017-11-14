@@ -1,5 +1,8 @@
+/// <reference path="../def/desmos.d.ts" />
 /// <reference path="../def/katex-autorender.d.ts" />
+import * as Desmos from "desmos";
 import * as katex from "katex";
+import marked from "marked";
 (<any>window).katex = (<any>katex).default;
 import renderMathInElement from "katex-autorender";
 
@@ -17,7 +20,7 @@ function save(): void {
 
 function render(): void {
     const element: HTMLElement = document.getElementById("output");
-    element.innerText = editor.getValue();
+    element.innerHTML = marked(editor.getValue());
     renderMathInElement(element, {
         delimiters: [{
             left: "$",
@@ -58,4 +61,5 @@ $(document).ready(() => {
         }
     });
     render();
+    // const calculator: Desmos.GraphingCalculator = new Desmos.GraphingCalculator();
 });
