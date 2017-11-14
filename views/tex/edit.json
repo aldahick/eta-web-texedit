@@ -2,6 +2,7 @@
   "css": ["@katex"],
   "include": ["/tex/shared/global.json"],
   "standaloneJS": [
-    "https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/ace.js"
+    "https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/ace.js",
+    "https://www.desmos.com/api/v0.9/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"
   ]
 }
