@@ -20,13 +20,24 @@ function save(): void {
 
 function render(): void {
     const element: HTMLElement = document.getElementById("output");
-    element.innerHTML = marked(editor.getValue());
+    let output = editor.getValue();
+    const tokens: string[] = output.replace(/\`/g, "&#96;").replace(/\n/g, "\n\n").split("$");
+    if (tokens.length > 1) {
+        tokens[0] += "`";
+        for (let i = 2; i < tokens.length; i += 2) {
+            tokens[i] = "`" + tokens[i] + "`";
+        }
+    }
+    output = tokens.join("$");
+    output = output.slice(0, -1);
+    element.innerHTML = marked(output);
     renderMathInElement(element, {
         delimiters: [{
             left: "$",
             right: "$",
-            display: true
+            display: true,
         }],
+        ignoredTags: ["script", "noscript", "style", "textarea", "pre"],
         errorCallback: onLatexRenderError
     });
 }
@@ -42,6 +53,7 @@ function onLatexRenderError(err: katex.ParseError): void {
 }
 
 $(document).ready(() => {
+    $("#body-content").attr("class", "");
     editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/latex");

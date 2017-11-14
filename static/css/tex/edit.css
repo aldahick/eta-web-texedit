@@ -20,6 +20,13 @@
     overflow: auto;
 }
 
+#output code {
+    padding: 0;
+    font-size: 100%;
+    color: inherit !important;
+    background-color: inherit !important;
+}
+
 #editor, #editor * {
     font-family: monospace !important;
 }
