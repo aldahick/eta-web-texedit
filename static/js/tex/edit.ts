@@ -28,7 +28,7 @@ function render(): void {
             tokens[i] = "`" + tokens[i] + "`";
         }
     }
-    output = tokens.join("$");
+    output = tokens.join("$") + "\n";
     output = output.slice(0, -1);
     element.innerHTML = marked(output);
     renderMathInElement(element, {
@@ -40,6 +40,9 @@ function render(): void {
         ignoredTags: ["script", "noscript", "style", "textarea", "pre"],
         errorCallback: onLatexRenderError
     });
+    setTimeout(() => {
+        $("#output")[0].scrollTo(0, $("#output").height());
+    }, 100);
 }
 
 function onLatexRenderError(err: katex.ParseError): void {
