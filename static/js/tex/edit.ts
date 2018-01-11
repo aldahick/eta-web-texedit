@@ -20,16 +20,9 @@ function save(): void {
 
 function render(): void {
     const element: HTMLElement = document.getElementById("output");
-    let output = editor.getValue();
-    const tokens: string[] = output.replace(/\`/g, "&#96;").replace(/\n/g, "\n\n").split("$");
-    if (tokens.length > 1) {
-        tokens[0] += "`";
-        for (let i = 2; i < tokens.length; i += 2) {
-            tokens[i] = "`" + tokens[i] + "`";
-        }
-    }
-    output = tokens.join("$") + "\n";
-    output = output.slice(0, -1);
+    const output = (editor.getValue() + "\n\n")
+        .replace(/\n/g, "\n\n")
+        .replace(/(\$[^\$]+\$)/g, "`$1`");
     element.innerHTML = marked(output);
     renderMathInElement(element, {
         delimiters: [{
