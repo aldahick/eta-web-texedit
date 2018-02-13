@@ -28,7 +28,7 @@ export default class TexController extends GenericTexController {
         if (!id) {
             return this.redirect("/tex/list");
         }
-        const note: db.TexNote = await db.texNote().createQueryBuilder("note")
+        const note: db.TexNote = await this.db.texNote.createQueryBuilder("note")
             .leftJoinAndSelect("note.author", "author")
             .where(`"note"."id" = :id`, { id })
             .getOne();
@@ -41,7 +41,7 @@ export default class TexController extends GenericTexController {
     @eta.mvc.authorize([db.TexPermission.ListNotes])
     public async list(): Promise<void> {
         this.global();
-        this.res.view["notes"] = await db.texNote().createQueryBuilder("note")
+        this.res.view["notes"] = await this.db.texNote.createQueryBuilder("note")
             .leftJoinAndSelect("note.author", "author")
             .where(`"author"."id" = :userId`, { userId: this.req.session.userid })
             .orderBy(`"note"."created"`, "DESC")

@@ -9,7 +9,7 @@ export default class ApiTexController extends GenericTexController {
     @eta.mvc.authorize([db.TexPermission.CreateNote])
     @eta.mvc.raw()
     public async create({ type, title }: { type: db.TexNoteType, title: string }): Promise<void> {
-        let note: db.TexNote = await db.texNote().createQueryBuilder("note")
+        let note: db.TexNote = await this.db.texNote.createQueryBuilder("note")
             .leftJoinAndSelect("note.author", "author")
             .where(`"author"."id" = :userId`, { userId: this.req.session.userid })
                 .andWhere(`"note"."title" = :title`, { title })
@@ -17,9 +17,9 @@ export default class ApiTexController extends GenericTexController {
         if (note) {
             return this.error(db.TexApiError.NoteNameAlreadyExists);
         }
-        note = await db.texNote().save(db.texNote().create({
+        note = await this.db.texNote.save(this.db.texNote.create({
             body: "", title, type,
-            author: db.user().create({ id: this.req.session.userid })
+            author: this.db.user.create({ id: this.req.session.userid })
         }));
         this.redirect("/tex/edit?id=" + note.id);
     }
@@ -28,12 +28,12 @@ export default class ApiTexController extends GenericTexController {
     @eta.mvc.authorize([db.TexPermission.UpdateNote])
     @eta.mvc.raw()
     public async update({ noteId, body, title }: { noteId: number, body: string, title: string }): Promise<void> {
-        const note: db.TexNote = await db.texNote().createQueryBuilder("note")
+        const note: db.TexNote = await this.db.texNote.createQueryBuilder("note")
             .leftJoinAndSelect("note.author", "author")
             .where(`"note"."id" = :noteId`, { noteId })
             .getOne();
         if (!this.check(note)) return;
-        await db.texNote().updateById(noteId, { body, title });
+        await this.db.texNote.updateById(noteId, { body, title });
         return this.result(db.GenericApiResult.Success);
     }
 
@@ -41,12 +41,12 @@ export default class ApiTexController extends GenericTexController {
     @eta.mvc.authorize([db.TexPermission.DeleteNote])
     @eta.mvc.raw()
     public async delete({ noteId }: { noteId: number }): Promise<void> {
-        const note: db.TexNote = await db.texNote().createQueryBuilder("note")
+        const note: db.TexNote = await this.db.texNote.createQueryBuilder("note")
             .leftJoinAndSelect("note.author", "author")
             .where(`"note"."id" = :noteId`, { noteId })
             .getOne();
         if (!this.check(note)) return;
-        await db.texNote().removeById(noteId);
+        await this.db.texNote.removeById(noteId);
         return this.result(db.GenericApiResult.Success);
     }
 }
